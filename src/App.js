@@ -22,10 +22,10 @@ function App() {
             </div>
         </nav>
         <Switch>
-            <Route exact path="/" component={RegisteredUsersList}>Registered Users</Route>
-            <Route path="/register" component={RegisterUser}>User Registration</Route>
-            <Route path="/edit/:id" component={UpdateUserInfo}>Update Registered User Information</Route>
-            <Route path="/delete/:id" component={DeleteUser}>Delete Registered User</Route>
+            <Route exact path="/" component={RegisteredUsersList}/>
+            <Route path="/register" component={RegisterUser}/>
+            <Route path="/edit/:id" component={UpdateUserInfo}/>
+            <Route path="/delete/:id" component={DeleteUser}/>
         </Switch>
     </div>
   );
