@@ -20,9 +20,10 @@ export const RegisterUser = () => {
                     </div>
                     <div className="card-body p-3">
                         <form onSubmit={onSubmit}>
-                            <pre className="">
-                                Required field(s)<span className="required">* </span>
-                            </pre>
+                            <p>
+                                Please provide the following information. <br/>
+                                <em>Required field(s)<span className="required">* </span></em>
+                            </p>
                             <div className="form-group my-2">
                                 <label htmlFor="text">First Name <span className="required">* </span> </label>
                                 <input {...register("fname")} type="text" name="fname" id="fname" className="form-control" required/>
@@ -39,8 +40,20 @@ export const RegisterUser = () => {
                             </div>
 
                             <div className="form-group my-2">
-                                <label htmlFor="number">Age <span className="required">* </span> </label>
-                                <input {...register("age")} type="number" name="age" id="age" className="form-control" required/>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="number">Age <span className="required">* </span> </label>
+                                        <input {...register("age")} type="number" name="age" id="age" className="form-control" required/>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label htmlFor="text">Sex <span className="required">* </span> </label>
+                                        <select {...register("sex")} name="sex" id="sex" className="form-control" required>
+                                            <option value="" selected disabled>Please choose</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="form-group my-2">
