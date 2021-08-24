@@ -3,7 +3,6 @@ import {Route, Switch, Link} from 'react-router-dom';
 import {RegisteredUsersList} from "./RegisteredUsersList";
 import {RegisterUser} from "./RegisterUser";
 import {UpdateUserInfo} from "./UpdateUserInfo";
-import {DeleteUser} from "./DeleteUser";
 
 function App() {
   return (
@@ -24,8 +23,7 @@ function App() {
         <Switch>
             <Route exact path="/" component={RegisteredUsersList}/>
             <Route path="/register" component={RegisterUser}/>
-            <Route path="/edit/:id" component={UpdateUserInfo}/>
-            <Route path="/delete/:id" component={DeleteUser}/>
+            <Route path="/update/:id" component={UpdateUserInfo}/>
         </Switch>
     </div>
   );

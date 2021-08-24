@@ -1,32 +1,17 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
+import {getUsersData} from "./api";
 
 export const RegisteredUsersList = () => {
     const [inputs, setInputs] = useState([]);
 
     useEffect(() =>{
-        setInputs([
-            {
-                id: 1,
-                fname: "Roniel",
-                lname: "Duka",
-                mname: "Lucena",
-                age: 22,
-                sex: "male",
-                email: "dukaroniel0701@gmail.com",
-            },
-
-            {
-                id: 2,
-                fname: "Rae Julien",
-                lname: "Duka",
-                mname: "Lucena",
-                age: 15,
-                sex: "male",
-                email: "pukkaraj@gmail.com",
-            }
-        ])
-    }, []);
+        const fetchUsersData = async () => {
+            const usersData = await getUsersData();
+            setInputs(usersData)
+        }
+        fetchUsersData()
+    }, [])
 
     return (
         <div className="container">
@@ -39,7 +24,6 @@ export const RegisteredUsersList = () => {
                         <table className="table table-responsive table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Name</th>
                                 <th>Action</th>
                             </tr>
@@ -47,11 +31,10 @@ export const RegisteredUsersList = () => {
                             <tbody>
                             {
                                 inputs.map(data => (
-                                    <tr key={data.id}>
-                                        <td>{data.id}</td>
+                                    <tr key={data._id}>
                                         <td>{data.lname}, {data.fname} {data.mname}</td>
                                         <td>
-                                            <Link to={`/edit/${data.id}`}> Edit</Link>
+                                            <Link to={`/update/${data._id}`}><i className="fas fa-edit"></i></Link>
                                         </td>
                                     </tr>
                                 ))

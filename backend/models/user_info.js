@@ -34,7 +34,7 @@ const UserInfoSchema = mongoose.Schema({
                 throw new Error('Email is invalid.');
             }
         }
-    }
+    },
 });
 
 module.exports = mongoose.model("UserSchema", UserInfoSchema);

@@ -1,23 +1,24 @@
 import React, {useState, useEffect} from "react";
-
 import {UserInfoForm} from "./userInfoForm";
+import {useRouteMatch, useHistory} from 'react-router-dom';
+import {getData, updateUserData} from "./api";
 
 export const UpdateUserInfo = () => {
+    const match = useRouteMatch();
     const [input, setInputs] = useState();
+    const history = useHistory();
 
     useEffect(() => {
-        setInputs({
-            fname: "test",
-            lname: "test",
-            mname: "test",
-            age: "12",
-            sex: "male",
-            email: "test@test.test",
-        })
+        const fetchData = async () => {
+            const data = await getData(match.params.id);
+            setInputs(data)
+        }
+        fetchData()
     }, []);
 
-    const onSubmit = (data) => {
-        alert(JSON.stringify(data));
+    const onSubmit = async (data) => {
+        await updateUserData(data, match.params.id);
+        history.push("/");
     }
 
     return input ? (
@@ -32,7 +33,7 @@ export const UpdateUserInfo = () => {
                             The following are the information provided by the user. <br/>
                             <em>Required field(s)<span className="required">* </span></em>
                         </p>
-                        <UserInfoForm input={input} onSubmit={onSubmit()}/>
+                        <UserInfoForm input={input} onSubmit={onSubmit}/>
                     </div>
                 </div>
             </div>

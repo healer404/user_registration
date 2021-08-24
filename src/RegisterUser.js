@@ -1,10 +1,15 @@
 import React from "react";
 import {UserInfoForm} from "./userInfoForm";
+import {newUserRegister} from './api';
+import {useHistory} from "react-router-dom";
 
 export const RegisterUser = () => {
+    const history = useHistory();
 
-    const onSubmit = (data) => {
-        alert(JSON.stringify(data))
+    const onSubmit = async (data) => {
+        await newUserRegister(data);
+
+        history.push("/");
     };
 
     return (
@@ -19,7 +24,7 @@ export const RegisterUser = () => {
                             Please provide the following information. <br/>
                             <em>Required field(s)<span className="required">* </span></em>
                         </p>
-                        <UserInfoForm onSubmit={onSubmit}></UserInfoForm>
+                        <UserInfoForm onSubmit={onSubmit}/>
                     </div>
                 </div>
             </div>

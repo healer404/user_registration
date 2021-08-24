@@ -1,6 +1,5 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom";
 
 export const UserInfoForm = ({input, onSubmit}) => {
     const {register, handleSubmit} = useForm({
@@ -13,11 +12,9 @@ export const UserInfoForm = ({input, onSubmit}) => {
             email: input ? input.email : ""
         },
     });
-    const history = useHistory();
 
     const submitHandler = handleSubmit((data) => {
-        alert(JSON.stringify(data));
-        history.push('/');
+        onSubmit(data)
     });
     return (
         <form onSubmit={submitHandler}>
@@ -33,7 +30,7 @@ export const UserInfoForm = ({input, onSubmit}) => {
 
             <div className="form-group my-2">
                 <label htmlFor="text">Middle Name </label>
-                <input {...register("mname")} type="text" name="mname" id="mname" className="form-control" required/>
+                <input {...register("mname")} type="text" name="mname" id="mname" className="form-control"/>
             </div>
 
             <div className="form-group my-2">
@@ -45,7 +42,7 @@ export const UserInfoForm = ({input, onSubmit}) => {
                     <div className="col-md-6">
                         <label htmlFor="text">Sex <span className="required">* </span> </label>
                         <select {...register("sex")} name="sex" id="sex" className="form-control" required>
-                            <option value="" selected disabled>Please choose</option>
+                            <option disabled>Please choose</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
